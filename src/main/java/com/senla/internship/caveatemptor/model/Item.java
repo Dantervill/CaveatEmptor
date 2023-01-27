@@ -1,5 +1,7 @@
 package com.senla.internship.caveatemptor.model;
 
+import com.senla.internship.caveatemptor.converter.MonetaryAmountConverter;
+import com.senla.internship.caveatemptor.model.advanced.MonetaryAmount;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
@@ -77,7 +79,7 @@ public class Item {
 
 
 
-    // поле недоступное для вставки
+    // поле недоступное для SQL-операции INSERT
     @Column(name = "INITIAL_PRICE", insertable = false)
     /*
         Установка значения столбца по умолчанию.
@@ -94,8 +96,16 @@ public class Item {
     @Generated(GenerationTime.INSERT)
     private BigDecimal initialPrice;
 
-    @Column(name = "BUY_NOW_PRICE")
-    private BigDecimal buyNowPrice;
+    /*
+        Аннотацию @Convert можно опустить: она применяется для переопределения
+        или отключения конвертера для конкретного свойства.
+     */
+    @Convert(
+            converter = MonetaryAmountConverter.class,
+            disableConversion = false
+    )
+    @Column(name = "PRICE", length = 63)
+    private MonetaryAmount buyNowPrice;
 
     // Это свойство не будет храниться в базе данных
     @Transient

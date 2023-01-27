@@ -1,5 +1,6 @@
 package com.senla.internship.caveatemptor.dto;
 
+import com.senla.internship.caveatemptor.model.advanced.MonetaryAmount;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class ItemDto {
     private String name;
     // insertable = false
     private BigDecimal initialPrice;
-    private BigDecimal buyNowPrice;
+    private MonetaryAmount buyNowPrice;
     // 2023-01-26 17:16:56.000000
     private Date auctionEnd;
     private double metricWeight;

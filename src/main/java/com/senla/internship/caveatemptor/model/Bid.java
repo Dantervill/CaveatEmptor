@@ -1,5 +1,6 @@
 package com.senla.internship.caveatemptor.model;
 
+import com.senla.internship.caveatemptor.model.advanced.MonetaryAmount;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class Bid {
     @ManyToOne
     protected Item item;
 
-    private BigDecimal amount;
+    private MonetaryAmount amount;
     private Date createdOn;
 
     /*
